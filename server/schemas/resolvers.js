@@ -1,7 +1,22 @@
+const { User } = require('../models');
+
 const resolvers = {
     Query: {
-        helloZach: () => {
-            return 'Hiya Zach... good job!';
+        users: () => {
+            return User.find()
+                .select('-__v -password')
+                .populate('bookSchema');
+        }
+    },
+
+    Mutation: {
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+
+            return user;
+        },
+        login: async () => {
+
         }
     }
 };
