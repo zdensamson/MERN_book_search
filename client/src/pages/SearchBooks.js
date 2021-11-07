@@ -69,6 +69,7 @@ const SearchBooks = () => {
       return false;
     }
 
+// the setContext function in APP.JS is passing in the CONTEXT to our SAVE_BOOK query which is telling this query which USER is trying to save a book
     try {
        await saveBook({
         variables: { bookData: { ...bookToSave } },

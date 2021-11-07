@@ -10,10 +10,13 @@ import Navbar from './components/Navbar';
 
 
 // MODULE CODE
+
+// ESTABLISH (define a possible connection) a CONNECTION to the back-end server's /graphQL endpoint with createHttpLink
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+// automatically pass in the HEADERS to save_book & remove_book query
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -24,6 +27,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+// instantiate the Apollo Client instance and CREATE the CONNECTION (make the connection) to httpLink
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),

@@ -25,6 +25,7 @@ const SavedBooks = () => {
     }
 
     try {
+      // pass in CONTEXT from APP.JS to let the server know which USER wants to remove a book
       await removeBook({
         variables: { bookId },
       });
